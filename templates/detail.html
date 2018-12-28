@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Detail
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename="css/detail.css") }}">
+{% endblock %}
+
+{% block main %}
+  <h3 class="page-title">Title: {{ question.title }}</h3>
+  <p class="question-info">
+    <span class="question-author">Author: {{ question.author.username }}</span>
+    <span> Create Time: {{ question.create_time }}</span>
+  </p>
+  <hr>
+  <p class="question-content">{{ question.content }}</p>
+  <hr>
+  <h4>Comment (0) :</h4>
+  <form action="{{ url_for('add_command') }}" method="POST">
+    <div class="form-group">
+      <input name="comment" type="text" class="form-control" placeholder="Please write down your comment">
+      <input name="question_id" type="hidden" value="{{ question.id }}">
+    </div>
+    <div class="form-group" style="text-align: right;">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  <ul class="answer-list">
+    {% for comment in question.comments %}
+    <li>
+      <div class="user-info">
+        <img src="{{ url_for('static', filename='images/user.jpg') }}" class="avatar" alt="">
+        <span class="username">{{ comment.author.username }}</span>
+        <span class="create-time">{{ comment.create_time }}</span>
+      </div>
+      <p class="answer-content">{{ comment.content }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

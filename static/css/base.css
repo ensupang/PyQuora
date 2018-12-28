@@ -1,0 +1,20 @@
+.logoooo{
+  width: 100px;
+  height: 25px;
+}
+
+body{
+  background: #f3f3f3;
+}
+
+.main{
+  background: #fff;
+  width: 730px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.page-title{
+  text-align: center;
+}
